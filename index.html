@@ -50,19 +50,27 @@
     <h2>📚 読書ログ</h2>
     <ul id="bookList"></ul>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    <script>
-        firebase.initializeApp({
-            apiKey: "AIzaSyCyhj_1FKhJ4OrsiIZOeA1xFS8WIKW_W-w",
+        const firebaseConfig = {
+            apiKey: "（ここは今のまま）",
             authDomain: "reading-counter.firebaseapp.com",
-            projectId: "reading-counter"
-        });
+            projectId: "reading-counter",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // ここを window に載せて app.js から使えるようにする
+        window.__fb = { auth, db, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, doc, getDoc, setDoc };
     </script>
 
     <script src="app.js"></script>
+
 </body>
 
 </html>

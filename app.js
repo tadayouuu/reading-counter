@@ -8,8 +8,11 @@ let editingId = null;
 let selectedYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
-const auth = firebase.auth();
-const db = firebase.firestore();
+// const auth = firebase.auth();
+// const db = firebase.firestore();
+// let currentUser = null;
+
+const { auth, db, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, doc, getDoc, setDoc } = window.__fb;
 let currentUser = null;
 
 function load() {
