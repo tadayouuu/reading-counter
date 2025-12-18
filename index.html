@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <button id="loginBtn">Googleでログイン</button>
+    <button id="logoutBtn" style="display:none">ログアウト</button>
     <h1 id="year"></h1>
 
     <div class="counter">
@@ -49,6 +51,18 @@
     <ul id="bookList"></ul>
 
     <script src="app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyCyhj_1FKhJ4OrsiIZOeA1xFS8WIKW_W-w",
+            authDomain: "reading-counter.firebaseapp.com",
+            projectId: "reading-counter"
+        });
+    </script>
 </body>
 
 </html>

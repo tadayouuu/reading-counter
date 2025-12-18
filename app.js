@@ -8,6 +8,10 @@ let editingId = null;
 let selectedYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
+const auth = firebase.auth();
+const db = firebase.firestore();
+let currentUser = null;
+
 function load() {
     const saved = localStorage.getItem("readingLogs");
     if (saved) data = JSON.parse(saved);
@@ -294,6 +298,52 @@ document.getElementById("nextMonth").onclick = () => {
     renderYearSelect();
     update();
 };
+
+document.getElementById("loginBtn").onclick = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
+};
+
+document.getElementById("logoutBtn").onclick = () => {
+    auth.signOut();
+};
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        currentUser = user;
+        document.getElementById("loginBtn").style.display = "none";
+        document.getElementById("logoutBtn").style.display = "inline";
+
+        loadFromFirestore();
+    } else {
+        currentUser = null;
+        document.getElementById("loginBtn").style.display = "inline";
+        document.getElementById("logoutBtn").style.display = "none";
+
+        data = { logs: [] };
+        update();
+    }
+});
+
+async function save() {
+    if (!currentUser) return;
+    await db.collection("users")
+        .doc(currentUser.uid)
+        .set(data);
+}
+
+async function loadFromFirestore() {
+    const doc = await db.collection("users")
+        .doc(currentUser.uid)
+        .get();
+
+    if (doc.exists) {
+        data = doc.data();
+    } else {
+        data = { logs: [] };
+    }
+    update();
+}
 
 load();
 renderYearSelect();
