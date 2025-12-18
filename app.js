@@ -269,13 +269,19 @@ document.getElementById("add").onclick = async () => {
         }
         editingId = null;
     } else {
+        const dateInput = document.getElementById("finishedDate").value;
+        const d = dateInput ? new Date(dateInput) : new Date();
+
         data.logs.push({
             id: Date.now(),
             title,
             image: selectedBook?.image || "",
             media,
-            finishedAt: new Date().toISOString()
+            finishedAt: d.toISOString()
         });
+
+        selectedYear = d.getFullYear();
+        currentMonth = d.getMonth();
     }
 
     document.getElementById("finishedDate").value = "";
