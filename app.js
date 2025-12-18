@@ -327,30 +327,30 @@ document.getElementById("logoutBtn").onclick = () => {
     signOut(auth);
 };
 
-// onAuthStateChanged(auth, async (user) => {
-//     if (user) {
-//         currentUser = user;
-//         document.getElementById("loginBtn").style.display = "none";
-//         document.getElementById("logoutBtn").style.display = "inline";
-
-//         await loadRemote();
-//     } else {
-//         currentUser = null;
-//         document.getElementById("loginBtn").style.display = "inline";
-//         document.getElementById("logoutBtn").style.display = "none";
-
-//         loadLocal();
-//     }
-//     renderYearSelect();
-//     update();
-// });
-
 onAuthStateChanged(auth, async (user) => {
     if (user) {
+        currentUser = user;
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("logoutBtn").style.display = "inline";
+
+        await loadRemote();
     } else {
+        currentUser = null;
         document.getElementById("loginBtn").style.display = "inline";
         document.getElementById("logoutBtn").style.display = "none";
+
+        loadLocal();
     }
+    renderYearSelect();
+    update();
 });
+
+// onAuthStateChanged(auth, async (user) => {
+//     if (user) {
+//         document.getElementById("loginBtn").style.display = "none";
+//         document.getElementById("logoutBtn").style.display = "inline";
+//     } else {
+//         document.getElementById("loginBtn").style.display = "inline";
+//         document.getElementById("logoutBtn").style.display = "none";
+//     }
+// });
