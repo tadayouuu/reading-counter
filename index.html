@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>読書カウンター</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1 id="year"></h1>
+
+    <div class="counter">
+        <span id="count">0</span> / 50 冊
+    </div>
+
+    <div class="year-select">
+        <select id="yearSelect"></select>
+    </div>
+
+    <div class="bar">
+        <div id="progress"></div>
+    </div>
+
+    <input id="title" placeholder="タイトル（任意）" />
+    <input id="finishedDate" type="date" />
+
+    <div class="media">
+        <label><input type="radio" name="media" value="紙" checked>紙</label>
+        <label><input type="radio" name="media" value="Kindle">Kindle</label>
+        <label><input type="radio" name="media" value="図書館">図書館</label>
+        <label><input type="radio" name="media" value="メルカリ">メルカリ</label>
+    </div>
+
+    <button id="search">表紙検索</button>
+    <div id="preview"></div>
+
+    <button id="add">読了！</button>
+
+    <h2>📅 カレンダー</h2>
+    <div class="calendar-nav">
+        <button id="prevMonth">←</button>
+        <span id="monthLabel"></span>
+        <button id="nextMonth">→</button>
+    </div>
+    <div id="calendar" class="calendar"></div>
+
+    <h2>📚 読書ログ</h2>
+    <ul id="bookList"></ul>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

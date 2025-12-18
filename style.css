@@ -1,0 +1,85 @@
+body {
+    font-family: sans-serif;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.counter {
+    font-size: 24px;
+}
+
+.bar {
+    height: 10px;
+    background: #eee;
+    margin: 10px 0 20px;
+}
+
+#progress {
+    height: 100%;
+    background: #4caf50;
+    width: 0;
+}
+
+.media label {
+    margin-right: 10px;
+}
+
+#preview {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.previewItem {
+    cursor: pointer;
+    width: 80px;
+    text-align: center;
+}
+
+.previewItem img {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+li img {
+    width: 50px;
+}
+
+.year-select {
+    margin: 10px 0;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.calendar .day {
+    border: 1px solid #ddd;
+    min-height: 40px;
+    font-size: 12px;
+    padding: 2px;
+}
+
+#finishedDate {
+    margin-top: 5px;
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
