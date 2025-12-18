@@ -96,6 +96,7 @@ function update() {
 
     renderList(monthLogs);
     renderCalendar(selectedYear, currentMonth);
+    renderYearBookList(selectedYear);
 }
 
 /* =========================
@@ -191,6 +192,29 @@ function renderList(logs) {
         <button onclick="deleteLog(${l.id})">削除</button>
       </div>
     `;
+        ul.appendChild(li);
+    });
+}
+
+function renderYearBookList(year) {
+    const ul = document.getElementById("yearBookList");
+    const title = document.getElementById("yearListTitle");
+
+    const logs = data.logs
+        .filter(l => new Date(l.finishedAt).getFullYear() === year)
+        .slice()
+        .sort((a, b) => new Date(a.finishedAt) - new Date(b.finishedAt));
+
+    title.textContent = `${year}年に読んだ本（${logs.length}冊）`;
+    ul.innerHTML = "";
+
+    logs.forEach(l => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${new Date(l.finishedAt).toLocaleDateString()}</span>
+          ：<strong>${l.title || "（無題）"}</strong>
+          <small>［${l.media}］</small>
+        `;
         ul.appendChild(li);
     });
 }
