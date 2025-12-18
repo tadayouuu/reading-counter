@@ -17,9 +17,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCyhj_1FkhJ40rsiIZ0eA1xFS8WIKW_w",
+    apiKey: "AIzaSyCyhj_1FKhJ4OrsiIZOeA1xFS8WIKW_W-w",
     authDomain: "reading-counter.firebaseapp.com",
     projectId: "reading-counter",
+    storageBucket: "reading-counter.firebasestorage.app",
+    messagingSenderId: "738854844218",
+    appId: "1:738854844218:web:2adaf8ed4ba98e0a620203"
 };
 
 const fbApp = initializeApp(firebaseConfig);
