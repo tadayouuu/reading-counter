@@ -127,3 +127,35 @@ li img {
 .comment {
     white-space: pre-wrap;
 }
+
+@media (max-width: 600px) {
+
+    /* 一覧を縦寄せ */
+    .item {
+        flex-direction: column;
+    }
+
+    .cover {
+        width: 100px;
+        margin-bottom: 8px;
+    }
+
+    /* ボタンを押しやすく */
+    button {
+        padding: 8px 12px;
+        margin-top: 4px;
+    }
+
+    /* 入力欄を広く */
+    input,
+    textarea,
+    select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* カレンダーの文字を少し小さく */
+    .calendar {
+        font-size: 0.85em;
+    }
+}
