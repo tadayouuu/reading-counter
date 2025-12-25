@@ -34,8 +34,8 @@ const db = getFirestore(fbApp);
 ========================= */
 const GOAL = 50;
 const currentYear = new Date().getFullYear();
-const yearTitle = document.getElementById("year");
-yearTitle.textContent = `${currentYear}年 読書カウンター`;
+const yearTitleEl = document.getElementById("year");
+yearTitleEl.textContent = `${currentYear}年 読書カウンター`;
 
 let data = { logs: [] };
 let selectedBook = null;
