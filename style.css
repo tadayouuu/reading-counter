@@ -9,15 +9,17 @@ body {
 }
 
 .bar {
-    height: 10px;
+    width: 100%;
+    height: 20px;
     background: #eee;
-    margin: 10px 0 20px;
+    border-radius: 10px;
 }
 
 #progress {
     height: 100%;
-    background: #4caf50;
     width: 0;
+    border-radius: 10px;
+    transition: width 0.3s, background-color 0.3s;
 }
 
 .media label {
