@@ -129,7 +129,9 @@ function renderYearSelect() {
         data.logs.map(l => new Date(l.finishedAt).getFullYear())
     )];
 
-    if (!years.includes(year)) years.push(year);
+    if (!years.includes(currentYear)) {
+        years.push(currentYear);
+    }
 
     years.sort().forEach(y => {
         const opt = document.createElement("option");
