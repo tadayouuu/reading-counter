@@ -33,8 +33,9 @@ const db = getFirestore(fbApp);
    基本状態
 ========================= */
 const GOAL = 50;
-const year = new Date().getFullYear();
-document.getElementById("year").textContent = `${year}年 読書カウンター`;
+const currentYear = new Date().getFullYear();
+const yearTitle = document.getElementById("year");
+yearTitle.textContent = `${currentYear}年 読書カウンター`;
 
 let data = { logs: [] };
 let selectedBook = null;
@@ -183,14 +184,23 @@ function renderList(logs) {
 
     logs.slice().reverse().forEach(l => {
         const li = document.createElement("li");
+        const stars = l.rating ? "★".repeat(l.rating) + "☆".repeat(5 - l.rating) : "";
         li.innerHTML = `
-      <img src="${l.image || ""}">
-      <div>
-        <strong>${l.title || "（無題）"}</strong><br>
-        <small>${l.media}</small>
-        <button onclick="editLog(${l.id})">編集</button>
-        <button onclick="deleteLog(${l.id})">削除</button>
-      </div>
+            <div class="item">
+            <img class="cover" src="${l.image || ""}">
+                <div class="info">
+                    <div class="main">
+                        <strong>${l.title || "（無題）"}</strong><br>
+                        <small>${l.media}</small>
+                        <button onclick="editLog(${l.id})">編集</button>
+                        <button onclick="deleteLog(${l.id})">削除</button>
+                    </div>
+                    <div class="sub">
+                        <div class="stars">${stars || ""}</p>
+                        <div class="comment">${l.comment || ""}</p>
+                    </div>
+                </div>
+            </div>
     `;
         ul.appendChild(li);
     });
@@ -230,6 +240,8 @@ window.editLog = function (id) {
 
     const d = new Date(log.finishedAt);
     document.getElementById("finishedDate").value = d.toISOString().slice(0, 10);
+    document.getElementById("rating").value = log.rating ?? "";
+    document.getElementById("comment").value = log.comment ?? "";
 };
 
 window.deleteLog = function (id) {
@@ -275,6 +287,8 @@ document.getElementById("search").onclick = searchBook;
 document.getElementById("add").onclick = async () => {
     const title = document.getElementById("title").value;
     const media = document.querySelector("input[name=media]:checked").value;
+    const rating = document.getElementById("rating").value;
+    const comment = document.getElementById("comment").value;
 
     if (editingId) {
         const log = data.logs.find(l => l.id === editingId);
@@ -290,6 +304,8 @@ document.getElementById("add").onclick = async () => {
             log.finishedAt = d.toISOString();
             selectedYear = d.getFullYear();
             currentMonth = d.getMonth();
+            log.rating = rating ? Number(rating) : null;
+            log.comment = comment || "";
         }
         editingId = null;
     } else {
@@ -301,7 +317,9 @@ document.getElementById("add").onclick = async () => {
             title,
             image: selectedBook?.image || "",
             media,
-            finishedAt: d.toISOString()
+            finishedAt: d.toISOString(),
+            rating: rating ? Number(rating) : null,
+            comment: comment || ""
         });
 
         selectedYear = d.getFullYear();
@@ -311,6 +329,8 @@ document.getElementById("add").onclick = async () => {
     document.getElementById("finishedDate").value = "";
     document.getElementById("title").value = "";
     document.getElementById("preview").innerHTML = "";
+    document.getElementById("rating").value = "";
+    document.getElementById("comment").value = "";
     selectedBook = null;
 
     await saveAll();
@@ -374,13 +394,3 @@ onAuthStateChanged(auth, async (user) => {
     renderYearSelect();
     update();
 });
-
-// onAuthStateChanged(auth, async (user) => {
-//     if (user) {
-//         document.getElementById("loginBtn").style.display = "none";
-//         document.getElementById("logoutBtn").style.display = "inline";
-//     } else {
-//         document.getElementById("loginBtn").style.display = "inline";
-//         document.getElementById("logoutBtn").style.display = "none";
-//     }
-// });

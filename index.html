@@ -40,6 +40,22 @@
     <button id="search">表紙検索</button>
     <div id="preview"></div>
 
+    <div class="rating">
+        <label>評価：</label>
+        <select id="rating">
+            <option value="">--</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+        </select>
+    </div>
+
+    <div class="comment">
+        <textarea id="comment" placeholder="一言コメント（任意）"></textarea>
+    </div>
+
     <button id="add">読了！</button>
 
     <h2>📅 カレンダー</h2>
@@ -53,26 +69,6 @@
     <h2>📚 読書ログ</h2>
     <ul id="bookList"></ul>
 
-    <!-- <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCyhj_1FKhJ4OrsiIZOeA1xFS8WIKW_W-w",
-            authDomain: "reading-counter.firebaseapp.com",
-            projectId: "reading-counter",
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // ここを window に載せて app.js から使えるようにする
-        window.__fb = { auth, db, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, doc, getDoc, setDoc };
-    </script>
-
-    <script src="app.js"></script> -->
     <script type="module" src="app.js"></script>
 </body>
 

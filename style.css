@@ -83,3 +83,47 @@ li img {
     gap: 10px;
     margin-bottom: 5px;
 }
+
+#bookList li {
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+.item {
+    display: flex;
+    gap: 12px;
+}
+
+/* 画像は絶対に伸ばさない */
+.cover {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* 右側全体 */
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 上段：タイトルなど */
+.main {
+    margin-bottom: 6px;
+}
+
+/* 下段：評価・コメント */
+.sub {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.stars {
+    line-height: 1.2;
+}
+
+.comment {
+    white-space: pre-wrap;
+}
