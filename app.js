@@ -92,8 +92,25 @@ function update() {
     });
 
     document.getElementById("count").textContent = yearLogs.length;
-    document.getElementById("progress").style.width =
-        Math.min((yearLogs.length / GOAL) * 100, 100) + "%";
+    // document.getElementById("progress").style.width =
+    //     Math.min((yearLogs.length / GOAL) * 100, 100) + "%";
+
+    const count = yearLogs.length;
+    const progress = document.getElementById("progress");
+
+    let color = "#9acd32"; // 黄緑（デフォルト）
+
+    if (count >= 40) {
+        color = "#c0392b"; // 赤
+    } else if (count >= 30) {
+        color = "#8e5a2b"; // 茶
+    } else if (count >= 20) {
+        color = "#f1c40f"; // 黄
+    } else if (count >= 10) {
+        color = "#2ecc71"; // 緑
+    }
+
+    progress.style.backgroundColor = color;
 
     renderList(monthLogs);
     renderCalendar(selectedYear, currentMonth);
