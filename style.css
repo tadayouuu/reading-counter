@@ -129,6 +129,11 @@ li img {
 }
 
 @media (max-width: 600px) {
+    body {
+        margin: 0;
+        padding: 12px;
+        /* ← これが効く */
+    }
 
     /* 一覧を縦寄せ */
     .item {
@@ -154,6 +159,7 @@ li img {
     select,
     textarea {
         width: 100%;
+        max-width: 420px;
         font-size: 1rem;
         padding: 10px;
     }
