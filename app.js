@@ -97,6 +97,7 @@ function update() {
 
     const count = yearLogs.length;
     const progress = document.getElementById("progress");
+    progress.style.width = Math.min((count / GOAL) * 100, 100) + "%";
 
     let color = "#9acd32"; // 黄緑（デフォルト）
 
