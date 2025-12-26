@@ -362,6 +362,12 @@ document.getElementById("add").onclick = async () => {
 ========================= */
 document.getElementById("yearSelect").onchange = e => {
     selectedYear = Number(e.target.value);
+
+    const months = data.logs
+        .filter(l => new Date(l.finishedAt).getFullYear() === selectedYear)
+        .map(l => new Date(l.finishedAt).getMonth());
+
+    currentMonth = months.length ? Math.min(...months) : 0;
     update();
 };
 
