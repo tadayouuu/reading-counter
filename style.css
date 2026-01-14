@@ -91,6 +91,10 @@ li img {
     margin-bottom: 12px;
 }
 
+#yearBookList li:hover {
+    text-decoration: underline;
+}
+
 .item {
     display: flex;
     gap: 12px;

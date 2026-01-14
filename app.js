@@ -238,13 +238,42 @@ function renderYearBookList(year) {
     title.textContent = `${year}年に読んだ本（${logs.length}冊）`;
     ul.innerHTML = "";
 
+    // logs.forEach(l => {
+    //     const li = document.createElement("li");
+    //     li.innerHTML = `
+    //       <span>${new Date(l.finishedAt).toLocaleDateString()}</span>
+    //       ：<strong>${l.title || "（無題）"}</strong>
+    //       <small>［${l.media}］</small>
+    //     `;
+    //     ul.appendChild(li);
+    // });
     logs.forEach(l => {
         const li = document.createElement("li");
+
+        // 表示テキスト
         li.innerHTML = `
-          <span>${new Date(l.finishedAt).toLocaleDateString()}</span>
-          ：<strong>${l.title || "（無題）"}</strong>
-          <small>［${l.media}］</small>
+        <span>${new Date(l.finishedAt).toLocaleDateString()}</span>
+        ：<strong>${l.title || "（無題）"}</strong>
+        <small>［${l.media}］</small>
         `;
+
+        // クリックできるようにする（ボタンじゃなくてもOK）
+        li.style.cursor = "pointer";
+
+        li.onclick = () => {
+            const d = new Date(l.finishedAt);
+            selectedYear = d.getFullYear();
+            currentMonth = d.getMonth();
+
+            // 年プルダウンも合わせる
+            document.getElementById("yearSelect").value = selectedYear;
+
+            update();
+
+            // ついで：カレンダーへスクロール（任意）
+            document.getElementById("calendar").scrollIntoView({ behavior: "smooth" });
+        };
+
         ul.appendChild(li);
     });
 }
@@ -290,7 +319,7 @@ async function searchBook() {
     books.forEach(b => {
         const div = document.createElement("div");
         div.className = "previewItem";
-        div.innerHTML = `<img src="${b.image}"><small>${b.title}</small>`;
+        div.innerHTML = `<img src="${b.image}" alt=""><small>${b.title}</small>`;
         div.onclick = () => {
             selectedBook = b;
             document.getElementById("title").value = b.title;
