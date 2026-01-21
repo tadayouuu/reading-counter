@@ -435,6 +435,7 @@ document.getElementById("logoutBtn").onclick = () => {
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUser = user;
+        console.log("LOGIN uid:", user.uid, "email:", user.email);
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("logoutBtn").style.display = "inline";
 
