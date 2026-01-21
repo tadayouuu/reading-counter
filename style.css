@@ -132,6 +132,10 @@ li img {
 
 .comment {
     white-space: pre-wrap;
+    width: 100%;
+    height: 200px;
+    resize: vertical;
+    /* 縦だけ */
 }
 
 @media (max-width: 600px) {
